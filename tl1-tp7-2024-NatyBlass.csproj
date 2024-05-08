@@ -5,7 +5,6 @@
     <TargetFramework>net7.0</TargetFramework>
     <RootNamespace>tl1_tp7_2024_NatyBlass</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
   </PropertyGroup>
 
 </Project>
