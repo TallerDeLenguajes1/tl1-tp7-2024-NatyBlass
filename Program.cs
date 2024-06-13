@@ -1,66 +1,114 @@
-﻿using System.ComponentModel;
-// using EspacioCalculadora;
+﻿using System.Runtime.CompilerServices;
+using DatosEmpleados;
 
-// Calculadora Operaciones = new Calculadora();
+Empleados Empleado = new Empleados();
+int c = 0;
 
-//     string opcAux, num1Aux, contAux; 
-//     int opc;
-//     double num1;
-//     int continuar = 1;
+Console.WriteLine("==========DATOS DEL EMPLEADO==========");
 
-//     while (continuar != 0)
-//     {
-//         Console.WriteLine("================MENU================");
-//         Console.WriteLine(" 1 - SUMA");
-//         Console.WriteLine(" 2 - RESTA");
-//         Console.WriteLine(" 3 - PRODUCTO");
-//         Console.WriteLine(" 4 - DIVISION");
-//         Console.WriteLine(" 5 - LIMPIAR");
-//         Console.WriteLine(" 0 - SALIR");
-//         Console.WriteLine("===================================");
-//         Console.WriteLine("Ingrese una Opcion : ");
-//         opcAux = Console.ReadLine();
-//         opc = int.Parse(opcAux);
-        
-//         Console.WriteLine("Ingrese un numero: ");
-//         num1Aux = Console.ReadLine();
-//         num1 = double.Parse(num1Aux);
-//         switch (opc)
-//         {
-//             case 1: 
-//                 Operaciones.Suma(num1);
-//                 break;
-            
-//             case 2: 
-//                 Operaciones.Resta(num1);
-//                 break;
+Console.WriteLine("Nombre: ");
+Empleado.Nombre = Console.ReadLine();
 
-//             case 3: 
-//                 Operaciones.Multiplicar(num1);
-//                 break;
+Console.WriteLine("Apellido: ");
+Empleado.Apellido = Console.ReadLine();
 
-//             case 4: 
-//                 Operaciones.Dividir(num1);
-//                 break;
+while (c != 1)
+{
+    Console.WriteLine("Fecha de Nacimiendo (formato: yyyy-MM-dd): ");
+    string fecAux = Console.ReadLine();
+    DateTime fecNac;
+    if (DateTime.TryParse(fecAux, out fecNac))
+        {
+            Empleado.FecNac = fecNac;
+            c = 1;
+        }
+    else
+        {
+            Console.WriteLine("La fecha ingresada no es valida. Por favor, intente nuevamente.");
+            c = 0;
+        }
+}
 
-//             case 5: 
-//                 Operaciones.Limpiar();
-//                 break;
-//             default:
-//                 Console.WriteLine("Ingreso una opcion no valida");
-//                 break;
-//         }
+Console.Write("Estado Civil: S - Soltero || C - Casado || H - Con Hijos");
+string estadoCiv = Console.ReadLine();
+Empleado.EstadoCiv = char.Parse(estadoCiv);
 
-//         Console.WriteLine("Resultado de las operaciones = " +Operaciones.resultado);
+c = 0;
 
-//         Console.WriteLine("¿Desea Realizar otra Operacion?");
-//         Console.WriteLine("0  = NO || 1 = SI");
-//         contAux = Console.ReadLine();
-//         continuar = int.Parse(contAux);
+while (c != 1)
+{
+    Console.WriteLine("Fecha de Ingreso a la Empresa (formato: yyyy-MM-dd): ");
+    string fecAux = Console.ReadLine();
+    DateTime fecIng;
+    if (DateTime.TryParse(fecAux, out fecIng))
+        {
+            Empleado.IngresoEmpresa = fecIng;
+            c = 1;
+        }
+    else
+        {
+            Console.WriteLine("La fecha ingresada no es valida. Por favor, intente nuevamente.");
+            c = 0;
+        }
+}
 
-//     }
+c = 0;
 
-//     Console.WriteLine("Saliendo...");
+Console.WriteLine("Ingrese su Sueldo Basico: ");
+string Aux = Console.ReadLine();
+int sueldo = int.Parse(Aux);
+Empleado.SueldoBasico = sueldo;
+
+while (c != 1)
+{
+    Console.WriteLine("Ingrese su Cargo (numero): ");
+    Console.WriteLine("1 - Auxiliar");
+    Console.WriteLine("2 - Administrativo");
+    Console.WriteLine("3 - Ingeniero");
+    Console.WriteLine("4 - Especialista");
+    Console.WriteLine("5 - Investigador");
+
+    int cargoAux = int.Parse(Console.ReadLine()) - 1; //esta forma me evita crear muchas variables! 
+
+    if (cargoAux < 5 && cargoAux >= 0)
+    {
+        switch (cargoAux)
+        {
+            case 0:
+                Empleado.Cargo = Cargos.Auxiliar;
+                break;
+            case 1:
+                Empleado.Cargo = Cargos.Administrativo;
+                break;
+            case 2:
+                Empleado.Cargo = Cargos.Ingeniero;
+                break;
+            case 3:
+                Empleado.Cargo = Cargos.Especialista;
+                break;
+            case 4:
+                Empleado.Cargo = Cargos.Investigador;
+                break;
+        }
+        c = 1;
+    }
+    else
+    {
+        Console.WriteLine("La opcion ingresada no es valida. Por favor, intente nuevamente.");
+            c = 0;
+    }
+}
+
+Console.WriteLine("======================================");
+Console.WriteLine("LOS DATOS INGRESADOS SON: ");
+Console.WriteLine("Nombre: " +Empleado.Nombre);
+Console.WriteLine("Apellido: " +Empleado.Apellido);
+Console.WriteLine("Fecha de Nacimiento: "+Empleado.FecNac);
+Console.WriteLine("Estado Civil: "+Empleado.EstadoCiv);
+Console.WriteLine("Ingreso a la Empresa: "+Empleado.IngresoEmpresa);
+Console.WriteLine("Sueldo Basico:$"+Empleado.SueldoBasico);
+Console.WriteLine("Cargo: " +Empleado.Cargo);
+
 
 
 
