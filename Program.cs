@@ -163,3 +163,28 @@ Console.WriteLine("Monto total a pagar de salarios: $" + totalSalarios);
 int edadJubilatoria = 65;
 DatosEmpleados.Empleados empleadoMasProximo = null;
 
+foreach (DatosEmpleados.Empleados empleado in infEmpleados)
+{
+    int edadJubEmpleado = empleado.CalculadoraDeJubilacion(empleado.FecNac);
+
+    if (edadJubEmpleado < edadJubilatoria)
+    {
+        edadJubilatoria = edadJubEmpleado;
+        empleadoMasProximo = empleado;
+    }
+}
+
+if (empleadoMasProximo != null)
+{
+    Console.WriteLine("Empleado mas proximo a jubilarse:");
+    Console.WriteLine("Nombre y Apellido: " + empleadoMasProximo.Nombre + " " + empleadoMasProximo.Apellido);
+    Console.WriteLine("Edad: " + empleadoMasProximo.CalculadoraDeEdad(empleadoMasProximo.FecNac) + " años");
+    Console.WriteLine("Antiguedad: " + empleadoMasProximo.CalculadoraDeAntiguedad(empleadoMasProximo.IngresoEmpresa) + " años");
+    Console.WriteLine("Cargo: " + empleadoMasProximo.Cargo);
+    Console.WriteLine("Sueldo: $" + empleadoMasProximo.CalculadoraDeSalario(empleadoMasProximo.SueldoBasico, empleadoMasProximo.Cargo, empleadoMasProximo.EstadoCiv, empleadoMasProximo.CalculadoraDeAntiguedad(empleadoMasProximo.IngresoEmpresa)));
+    Console.WriteLine("Edad de jubilacion: " + empleadoMasProximo.CalculadoraDeJubilacion(empleadoMasProximo.FecNac) + " años");
+}
+else
+{
+    Console.WriteLine("No se encontraron empleados.");
+}

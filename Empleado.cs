@@ -34,7 +34,7 @@ namespace DatosEmpleados
             int antiguedad = fechaActual.Year - fechaIng.Year; 
             int mes = fechaActual.Month - fechaIng.Month;
 
-            Console.WriteLine("Ingreso hace"+antiguedad+"años y"+mes+"meses");
+            Console.WriteLine("Ingreso hace "+antiguedad+" años y "+mes+" meses");
 
             return antiguedad;
             
@@ -43,8 +43,8 @@ namespace DatosEmpleados
         public int CalculadoraDeEdad(DateTime fecNac)
         {
             DateTime fechaActual = DateTime.Today;
-            
-            int edad = fechaActual.Year-fecNac.Year;
+            TimeSpan diferencia = fechaActual - fecNac;
+            int edad = diferencia.Days / 365;
 
             return edad;
         }
@@ -57,9 +57,9 @@ namespace DatosEmpleados
             return añosParaJubilarse;
         }
 
-        public float CalculadoraDeSalario(int sueldoBasico, Cargos cargo, char estadoCiv, int antiguedad)
+        public double CalculadoraDeSalario(double sueldoBasico, Cargos cargo, char estadoCiv, int antiguedad)
         {
-            float salario, adicional;
+            double salario, adicional;
 
             if (antiguedad <= 20 && antiguedad >= 0)
             {
