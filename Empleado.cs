@@ -31,20 +31,33 @@ namespace DatosEmpleados
         public int CalculadoraDeAntiguedad(DateTime fechaIng)
         {
             DateTime fechaActual = DateTime.Today; // DateTime.Today me brinda la fecha actual
-            int antiguedad = fechaActual.Year - fechaIng.Year; 
-            int mes = fechaActual.Month - fechaIng.Month;
-
-            Console.WriteLine("Ingreso hace "+antiguedad+" años y "+mes+" meses");
-
-            return antiguedad;
+            int antiguedadAños = fechaActual.Year - fechaIng.Year; 
+            int antiguedadMeses = fechaActual.Month - fechaIng.Month;
+            //Modificaciones para solucionar errores
+            if (fechaActual.Month < fechaIng.Month || (fechaActual.Month == fechaIng.Month && fechaActual.Day <= fechaIng.Day))
+            {
+                antiguedadAños--;
+            }
             
+            if (fechaActual.Day > fechaIng.Day)
+            {
+                antiguedadMeses++;
+            }
+
+            if (antiguedadMeses > 12)
+            {
+                antiguedadMeses -= 12;
+                antiguedadAños++;
+            }
+
+            return antiguedadAños;
         }
 
         public int CalculadoraDeEdad(DateTime fecNac)
         {
             DateTime fechaActual = DateTime.Today;
             TimeSpan diferencia = fechaActual - fecNac;
-            int edad = diferencia.Days / 365;
+            int edad = diferencia.Days / 365; // para solucionar errores en los calculos de edad
 
             return edad;
         }

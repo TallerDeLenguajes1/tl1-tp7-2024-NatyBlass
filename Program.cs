@@ -29,7 +29,7 @@ while (c != 1)
         }
 }
 
-Console.Write("Estado Civil: S - Soltero || C - Casado || H - Con Hijos");
+Console.Write("Estado Civil: S - Soltero || C - Casado || H - Con Hijos: ");
 string estadoCiv = Console.ReadLine();
 Empleado.EstadoCiv = char.Parse(estadoCiv);
 
@@ -146,18 +146,20 @@ double totalSalarios = 0;
 
 foreach (DatosEmpleados.Empleados empleado in infEmpleados)
 {
+    Console.WriteLine("======================================");
     Console.WriteLine("Nombre y Apellido: " + empleado.Nombre + " " + empleado.Apellido);
     Console.WriteLine("Edad: " + empleado.CalculadoraDeEdad(empleado.FecNac) + " años");
     Console.WriteLine("Antiguedad: " + empleado.CalculadoraDeAntiguedad(empleado.IngresoEmpresa) + " años");
     Console.WriteLine("Cargo: " + empleado.Cargo);
     Console.WriteLine("Sueldo: $" + empleado.CalculadoraDeSalario(empleado.SueldoBasico, empleado.Cargo, empleado.EstadoCiv, empleado.CalculadoraDeAntiguedad(empleado.IngresoEmpresa)));
-    Console.WriteLine("----------------------");
 
     empleado.CalculadoraDeAntiguedad(empleado.IngresoEmpresa);
     empleado.CalculadoraDeJubilacion(empleado.FecNac);
 
     totalSalarios += empleado.CalculadoraDeSalario(empleado.SueldoBasico, empleado.Cargo, empleado.EstadoCiv, empleado.CalculadoraDeAntiguedad(empleado.IngresoEmpresa));
 }
+
+Console.WriteLine("======================================");
 Console.WriteLine("Monto total a pagar de salarios: $" + totalSalarios);
 
 int edadJubilatoria = 65;
@@ -174,6 +176,7 @@ foreach (DatosEmpleados.Empleados empleado in infEmpleados)
     }
 }
 
+Console.WriteLine("======================================");
 if (empleadoMasProximo != null)
 {
     Console.WriteLine("Empleado mas proximo a jubilarse:");
@@ -182,7 +185,7 @@ if (empleadoMasProximo != null)
     Console.WriteLine("Antiguedad: " + empleadoMasProximo.CalculadoraDeAntiguedad(empleadoMasProximo.IngresoEmpresa) + " años");
     Console.WriteLine("Cargo: " + empleadoMasProximo.Cargo);
     Console.WriteLine("Sueldo: $" + empleadoMasProximo.CalculadoraDeSalario(empleadoMasProximo.SueldoBasico, empleadoMasProximo.Cargo, empleadoMasProximo.EstadoCiv, empleadoMasProximo.CalculadoraDeAntiguedad(empleadoMasProximo.IngresoEmpresa)));
-    Console.WriteLine("Edad de jubilacion: " + empleadoMasProximo.CalculadoraDeJubilacion(empleadoMasProximo.FecNac) + " años");
+    Console.WriteLine("Tiempo para su jubilacion: " + empleadoMasProximo.CalculadoraDeJubilacion(empleadoMasProximo.FecNac) + " años");
 }
 else
 {
